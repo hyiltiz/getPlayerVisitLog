@@ -43,8 +43,22 @@ mapFile=$serverLogDirectory/User2KU_ID.csv
 
 touch -f $outFile
 
+# OSX BSD sed cannot match its own line ending \r
+# So trying to match the following will each away
+# characters from the beginning
+# echo -en 'xxx abc\r\nxxx aa bb cc\r\n' | sed -E 's/xxx (.*)/\1->/g'
+# abc->
+# aa bb cc->
+#
+# This can be fixed by the following:
+# echo -en 'xxx abc\r\nxxx aa bb cc\r\n' | tr -d '\r' | sed -E 's/xxx (.*)/\1->/g'
+# abc->
+# aa bb cc->
+
+
 # raw PVL
 find . -name 'server_log_*.txt' -exec cat '{}' \;| egrep '(\) disconnected from)|(Client authenticated)' | tr -d '\r' | $sedCMD 's/Client authenticated/JOIN/g; s/disconnected from/LEAVE/g; s/ \[Shard\]//g; s/\[(.{8})\]: JOIN: \((KU_.{8})\) (.*)/\1, Join, \2, \3/g; s/^\[(.{8})\]: \((KU_.{8})\) LEAVE (.*$)/\1, Leave, \2, USERNAME, \3/g' > $outFile
+
 
 # Player ID <=> KU_ID
 cat $outFile | grep -v 'Leave, KU_' | sed -E 's/.{8}, Join, (KU_.{8}), (.*)/\1, \2/g' | sort -u > $mapFile
