@@ -1,4 +1,4 @@
-Your server is (occasionally) full of trolls, griefers and slurpers!? They did bad then disappeared so quick you did not catch them? Well, no more! With this, you can always see who logged into your server when with what Steam id (`KU` id), so you can, if you want, punish them by blacklisting, banning etc.
+Your server is (occasionally) full of trolls, griefers and slurpers!? They did bad then disappeared so quickly you weren't able to catch them? Well, no more! With this, you can always see who logged into your server when with what Steam id (`KU` id), so you can, if you want, punish them by blacklisting, banning etc. Did you know that, if you want, you can also login as others once you know their `KU` id? After all, the server is yours and you are the true master of your own World. Well, nah, it is still Charlie.
 
 This program does the following: 
 
@@ -25,6 +25,10 @@ chmod +x ./getPlayerVisitLog.sh
 ```BASH
  ./getPlayerVisitLog.sh "/home/hyiltiz/path/to/DST/server/logs/PRIV1/" output.csv
 ```
+
+It will create two `.csv` files at the server directory (it will tell you how to find them).
+
+Back to logging in as other users. Once you figure out what a player's `KU` id is (by running the line above), you can log in as any user using [this](http://forums.kleientertainment.com/topic/77880-admin-login-as-previous-visiting-user/) trick mentioned in the forums.
 
 # Compatibility
 This program relies on utilities that are already present in your system if you are using GNU/Linux or OSX (or whatever new name they come up with next time). For Windows, you should install Git for Windows from [here](https://git-scm.com/download/win) so you can use this.
