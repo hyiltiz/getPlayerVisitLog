@@ -57,7 +57,7 @@ touch -f $outFile
 
 
 # raw PVL
-find . -name 'server_log_*.txt' -exec cat '{}' \;| egrep '(\) disconnected from)|(Client authenticated)' | tr -d '\r' | $sedCMD 's/Client authenticated/JOIN/g; s/disconnected from/LEAVE/g; s/ \[Shard\]//g; s/\[(.{8})\]: JOIN: \((KU_.{8})\) (.*)/\1, Join, \2, \3/g; s/^\[(.{8})\]: \((KU_.{8})\) LEAVE (.*$)/\1, Leave, \2, USERNAME, \3/g' > $outFile
+find . -name 'server_log*.txt' -exec cat '{}' \;| egrep '(\) disconnected from)|(Client authenticated)' | tr -d '\r' | $sedCMD 's/Client authenticated/JOIN/g; s/disconnected from/LEAVE/g; s/ \[Shard\]//g; s/\[(.{8})\]: JOIN: \((KU_.{8})\) (.*)/\1, Join, \2, \3/g; s/^\[(.{8})\]: \((KU_.{8})\) LEAVE (.*$)/\1, Leave, \2, USERNAME, \3/g' > $outFile
 
 
 # Player ID <=> KU_ID
